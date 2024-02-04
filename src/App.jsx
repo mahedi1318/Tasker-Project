@@ -1,12 +1,19 @@
 
 import './App.css'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import HeroSection from './components/HeroSection'
+import TaskBoard from './components/TaskBoard'
 
 function App() {
 
 
   return (
     <>
-      <h1 className='bg-red-500'>this is me</h1>
+      <Header/>
+      <HeroSection/>
+      <TaskBoard/>
+      <Footer/>
     </>
   )
 }
