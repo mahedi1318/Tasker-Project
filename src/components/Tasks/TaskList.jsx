@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function TaskList({ tasks}) {
-	console.log(tasks)
+	
   return (
     <div>
       <div className="overflow-auto">
