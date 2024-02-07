@@ -1,9 +1,9 @@
 import { useState } from "react"
 
 
-export default function AddModal({onSendData}) {
+export default function AddModal({onSendData, onEditTask}) {
 
-  let [shTask, setShTask] = useState({
+  let [shTask, setShTask] = useState(onEditTask ||{
     id : crypto.randomUUID(),
 		title: "",
 		description: "",
@@ -11,6 +11,8 @@ export default function AddModal({onSendData}) {
 		priority : "",
 		isFavorite : "false"
   })
+
+  let [addMin, setAddMin] = useState(Object.is(onEditTask, null))
 
   let handleChange = (e)=>{
     // console.log(e.target.name)
@@ -25,6 +27,7 @@ export default function AddModal({onSendData}) {
     });
   };
  
+  console.log(onEditTask)
   
   return (
     <>
@@ -35,7 +38,8 @@ export default function AddModal({onSendData}) {
           <h2
             className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]"
           >
-            Add New Task
+            
+            {addMin ? "Add New Task" : "Edit Task"}
           </h2>
 
     
@@ -106,10 +110,11 @@ export default function AddModal({onSendData}) {
           <div className="mt-16 flex justify-center lg:mt-20">
             <button
               type="submit"
-              onClick={()=>onSendData(shTask)}
+              onClick={()=>onSendData(shTask, addMin)}
               className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
             >
-              Create new Task
+              
+              {addMin ? "Create new Task" : "Edit Task"}
             </button>
           </div>
     </div>

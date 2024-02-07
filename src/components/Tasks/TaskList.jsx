@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TaskList({ tasks}) {
+export default function TaskList({ tasks, onEdit, onSingleDelete}) {
 	
   return (
     <div>
@@ -45,8 +45,8 @@ export default function TaskList({ tasks}) {
 								<td className="text-center">{item.priority}</td>
 								<td>
 									<div className="flex items-center justify-center space-x-3">
-										<button className="text-red-500">Delete</button>
-										<button className="text-blue-500">Edit</button>
+										<button onClick={ ()=> onSingleDelete(item.id) } className="text-red-500">Delete</button>
+										<button onClick={()=>onEdit(item)} className="text-blue-500">Edit</button>
 									</div>
 								</td>
 					</tr>							
