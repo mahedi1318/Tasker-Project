@@ -9,7 +9,7 @@ export default function AddModal({onSendData, onEditTask}) {
 		description: "",
 		tags: [] ,
 		priority : "",
-		isFavorite : "false"
+		isFavorite : false
   })
 
   let [addMin, setAddMin] = useState(Object.is(onEditTask, null))
@@ -46,7 +46,7 @@ export default function AddModal({onSendData, onEditTask}) {
           <div className="space-y-9 text-white lg:space-y-10">
         
             <div className="space-y-2 lg:space-y-3">
-              <label for="title">Title</label>
+              <label htmlFor="title">Title</label>
               <input
                 className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
                 type="text"
@@ -59,7 +59,7 @@ export default function AddModal({onSendData, onEditTask}) {
             </div>
       
             <div className="space-y-2 lg:space-y-3">
-              <label for="description">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 className="block min-h-[120px] w-full rounded-md bg-[#2D323F] px-3 py-2.5 lg:min-h-[180px]"
                 type="text"
@@ -76,7 +76,7 @@ export default function AddModal({onSendData, onEditTask}) {
             >
       
               <div className="space-y-2 lg:space-y-3">
-                <label for="tags">Tags</label>
+                <label htmlFor="tags">Tags</label>
                 <input
                   className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
                   type="text"
@@ -89,7 +89,7 @@ export default function AddModal({onSendData, onEditTask}) {
               </div>
         
               <div className="space-y-2 lg:space-y-3">
-                <label for="priority">Priority</label>
+                <label htmlFor="priority">Priority</label>
                 <select
                   className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                   name="priority"

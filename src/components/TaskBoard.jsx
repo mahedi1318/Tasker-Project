@@ -3,6 +3,7 @@ import Search from "./Tasks/Search"
 import TaskAction from "./Tasks/TaskAction"
 import TaskList from "./Tasks/TaskList"
 import AddModal from "./Tasks/AddModal"
+import TaskNotFound from "./Tasks/TaskNotFound"
 
 
 const TaskBoard = () => {
@@ -13,7 +14,7 @@ const TaskBoard = () => {
 		description: "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
 		tags: ['Web', 'Python', 'API'] ,
 		priority : "High",
-		isFavorite : "false"
+		isFavorite : false,
 	}
 
 	let [tasks, setTasks] = useState([taskDefultData]);
@@ -52,9 +53,22 @@ const TaskBoard = () => {
 	}
 
 	const handleAllDelete = ()=>{
-		console.log("ami")
+		tasks.length = 0;		
+		setTasks([...tasks])
 	}
 	
+	const handleFavoriteTask = (task)=>{
+		let taskIndex = tasks.findIndex((item)=> item.id === task.id)
+		let copyTask = [...tasks];
+		copyTask[taskIndex].isFavorite = !copyTask[taskIndex].isFavorite
+		setTasks(copyTask)
+	}
+
+
+	const handleSearchingTask = (searchVal)=>{		
+		let searchTask = tasks.filter((item)=>item.title.toLocaleLowerCase().includes(searchVal.toLocaleLowerCase()))
+		setTasks([...searchTask])
+	}
 
   return (
     <>
@@ -64,12 +78,16 @@ const TaskBoard = () => {
 		<div className="container">
 		
 		<div className="p-2 flex justify-end">
-			<Search/>
+			<Search onSearch={handleSearchingTask}/>
 		</div>
 		
 			<div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
 				<TaskAction onAddTask = {hanndleAddTask} onAllDelete={handleAllDelete}/>
-				<TaskList tasks={tasks} onEdit={handleTaskEdit} onSingleDelete={handleDeleteSingle}/>
+				{tasks.length > 0 ?
+				(<TaskList tasks={tasks} onEdit={handleTaskEdit} onSingleDelete={handleDeleteSingle} onFave={handleFavoriteTask}/>)
+			:
+			(<TaskNotFound/>)}
+				
 			</div>
 		</div>
 	</section>
